@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="toDo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Need to do</h1>
+        <img src="images/check3.png" class="checkIcon" alt="Check" />
+        <nav>
+          <li onclick="filterLists(event, true)">Done</li>
+          <li onclick="filterLists(event, false)">To Do</li>
+        </nav>
+      </header>
+      <section></section>
+      <footer>
+        <div class="add">+</div>
+      </footer>
+    </div>
+
+    <template id="render">
+      <div class="item">
+        <div class="color"></div>
+        <div class="buttons">
+          <img
+            src="images/editIcon.png"
+            class="edit"
+            onclick="editBtn(event)"
+            alt="edit"
+          />
+          <img
+            src="images/deleteIcon.png"
+            class="delete"
+            onclick="deleteBtn(event)"
+            alt="delete"
+          />
+          <input type="hidden" class="hidden" />
+        </div>
+        <p class="title"></p>
+        <input type="checkbox" class="checkbox" />
+        <div class="others">others</div>
+        <img class="image" alt="image" height="20" width="20" />
+      </div>
+    </template>
+
+    <template id="editOrNew">
+      <form class="item">
+        <input type="color" class="color" name="color" />
+        <div class="buttons">
+          <img
+            src="images/saveIcon.png"
+            onclick="saveBtn(event)"
+            class="edit save"
+            alt="save"
+          />
+          <img
+            src="images/deleteIcon.png"
+            class="delete"
+            onclick="deleteBtn(event)"
+            alt="delete"
+          />
+          <input type="hidden" class="hidden" />
+        </div>
+        <input
+          type="text"
+          class="title"
+          name="title"
+          placeholder="Enter title here"
+        />
+        <input type="checkbox" class="checkbox" name="checkbox" />
+        <div class="others">others</div>
+        <img
+          src="images/image.jpg"
+          class="image"
+          alt="image"
+          height="20"
+          width="20"
+        />
+      </form>
+    </template>
+    <input type="color" value="#001280" />
+    <script src="toDo.js"></script>
+  </body>
+</html>

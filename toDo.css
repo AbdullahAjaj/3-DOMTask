@@ -1,0 +1,185 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Start container style */
+.container{
+    background-color: #DDD;
+    width: 350px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+@font-face {
+    font-family: "Nature Beauty Personal Use";
+    src: url("fonts/NatureBeautyPersonalUse-9Y2DK.ttf");
+}
+@font-face {
+    font-family: "spider-man";
+    src: url("fonts/Bouncy-Black-PERSONAL_USE_ONLY.otf");
+}
+.container header:first-child h1{
+    font-family: "spider-man";
+}
+/* End container style */
+
+/* Start header style */
+.container header{
+    position: sticky;
+    top: 10px;
+    background-color: transparent;
+    font-weight: bold;
+    font-family: "Arial";
+    display: grid;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    box-shadow: none;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    padding: 10px;
+    align-items: center;
+}
+.container header h1{
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    text-align: center;
+}
+.container header .checkIcon{
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    height: 50px;
+    width: 50px;
+    border-radius: 0;
+}
+.container header nav{
+    list-style-type: none;
+    display: inline-block;
+    grid-row: 2 / span 2;
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 2px 2px 10px gray;
+    background-color: white;
+    border-radius: 5px;
+    font-family: "Nature Beauty Personal Use";
+}
+.container header nav li{
+    width: calc(100% / 2);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container header nav li:hover{
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    transition: 1s;
+    height: transparent;
+    width: transparent;
+}
+.container header nav .styled{
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+/* End header style */
+
+/* Start footer style */
+.container footer{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px gray;
+}
+/* End footer style */
+
+
+/* Start section style */
+.container section{
+    display: flex;
+    flex-direction: column;
+    height: 496px;
+    overflow-y: auto;
+}
+.container section .item{
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(3, auto);
+    justify-content: space-between;
+    gap: 5px;
+    box-shadow: 2px 2px 10px gray;
+}
+section .item .color{
+    width: 80px;
+    border-radius: 5px;
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+}
+section .item .buttons{
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1
+}
+section .item .title{
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+    font-weight: bold;
+}
+section .item .checkbox{
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
+    place-self: end;
+}
+section .item .others{
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1
+}
+section .item img{
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 1;
+    place-self: end;
+    border-radius: 5px;
+    height: 25px;
+    width: 25px;
+} 
+/* End section style */
+
+/*  */
+.checkbox{
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+}
+/*  */
+.item .image{
+    border-radius: 50%;
+}
+
+
+
+/* Delete Dialod Style
+.deleteDialog{
+    position: absolute;
+    height: 200px;
+    width: 300px;
+    background-color: red;
+    top: 20%;
+    left: 37%;
+    display: none;
+} */
