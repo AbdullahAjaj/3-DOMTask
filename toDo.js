@@ -163,7 +163,6 @@ function confirmDeletion(e){
     localStorage.setItem("myList", JSON.stringify(myData))
     parentElement.remove()
     closeDialog()
-
 }
 
 function renderImageSlideDialog(e){
@@ -192,13 +191,15 @@ function renderImageSlideDialog(e){
     console.log(currentIndex)
 
     document.querySelector(".arrowPrevious").addEventListener("click",()=>{
-        popupImage.src = myImages[--currentIndex]
-        if(currentIndex === 0) currentIndex = myImages.length
+        currentIndex--
+        if(currentIndex === -1) currentIndex = myImages.length-1
+        popupImage.src = myImages[currentIndex]
     })
 
     document.querySelector(".arrowNext").addEventListener("click",()=>{
-        popupImage.src = myImages[++currentIndex]
-        if(currentIndex === myImages.length-1) currentIndex = -1
+        currentIndex++
+        if(currentIndex === myImages.length) currentIndex = 0
+        popupImage.src = myImages[currentIndex]
     })
 }
 
