@@ -101,10 +101,11 @@ function saveBtn(e){
     
     let newObj = {}
     newObj.id = Date.now()
-    newObj.color =  parentElement.children[0].value
-    newObj.title = parentElement.children[2].value
-    newObj.done = parentElement.children[3].checked
-    newObj.image = parentElement.children[5].src
+    
+    newObj.color =  document.forms[0].children.color.value
+    newObj.title = document.forms[0].children.title.value
+    newObj.done = document.forms[0].children.checkbox.checked
+    newObj.image = document.forms[0].children[5].src
 
     myData.push(newObj)
 
@@ -113,16 +114,28 @@ function saveBtn(e){
 }
 
 function deleteBtn(e){
-    if(confirm("Are you sure want to delete this note?")){
-        if(e?.target?.nextElementSibling?.value){
-            let itemID = e.target.nextElementSibling.value
-            myData = myData.filter(item=> item.id !== +itemID)
-            localStorage.setItem("myList", JSON.stringify(myData))
-        }
-        e.target.parentElement.parentElement.remove()
-    }
+    let delPopup = document.querySelector(".popup-overlay")
+    delPopup.style.visibility = "visible"
+    let itemID = e.target.nextElementSibling.value
+    let hiddenField = document.querySelector(".popup-box [type='hidden']")
+    hiddenField.value = +itemID
+    let parentElement = e.target.parentElement.parentElement
+    parentElement.classList.add("deletedCard")
 }
+function confirmDeletion(e){
+    let itemID = document.getElementsByName("hiddenField")[0].value
+    myData = myData.filter(item=> item.id !== +itemID)
+    localStorage.setItem("myList", JSON.stringify(myData))
+    let deletedCard = document.querySelector(".deletedCard")
+    deletedCard.remove()
+    closeBtn()
 
+}
+        
+function closeBtn(){
+    let delPopup = document.querySelector(".popup-overlay")
+    delPopup.style.visibility = "hidden"
+}
 
 function filterLists(e, flag){
     let liList = [...e.target.parentElement.children]

@@ -49,7 +49,7 @@
     </template>
 
     <template id="editOrNew">
-      <form class="item">
+      <form class="item" id="item-form">
         <input type="color" class="color" name="color" />
         <div class="buttons">
           <img
@@ -83,7 +83,22 @@
         />
       </form>
     </template>
-    <input type="color" value="#001280" />
+    <div class="popup-overlay">
+      <div class="popup-box">
+        <p>Are you sure you want to delete it?</p>
+        <img
+          src="images/close.png"
+          id="close"
+          onclick="closeBtn()"
+          alt="close"
+          height="30"
+          width="30"
+        />
+        <button class="yes" onclick="confirmDeletion(event)">Yes</button>
+        <button class="Cancel" onclick="closeBtn()">Cancel</button>
+        <input type="hidden" name="hiddenField" />
+      </div>
+    </div>
     <script src="toDo.js"></script>
   </body>
 </html>
