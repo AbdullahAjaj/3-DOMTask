@@ -13,21 +13,21 @@ let itemsData = [
         done: false,
         color: "#ffa500",
         title: "Create Prototypes",
-        image: "images/image.jpg"
+        image: "images/image2.png"
     },
     {
         id: 1676368496905,
         done: true,
         color: "#ffa500",
         title: "Create design consept",
-        image: "images/image.jpg"
+        image: "images/image3.jpg"
     },
     {
         id: 1676368505544,
         done: true,
         color: "#008000",
         title: "Discuss consept with team",
-        image: "images/image.jpg"
+        image: "images/image4.jpg"
     },
 ]
 
@@ -113,29 +113,6 @@ function saveBtn(e){
     location.reload()
 }
 
-function deleteBtn(e){
-    let delPopup = document.querySelector(".popup-overlay")
-    delPopup.style.visibility = "visible"
-    let itemID = e.target.nextElementSibling.value
-    let hiddenField = document.querySelector(".popup-box [type='hidden']")
-    hiddenField.value = +itemID
-    let parentElement = e.target.parentElement.parentElement
-    parentElement.classList.add("deletedCard")
-}
-function confirmDeletion(e){
-    let itemID = document.getElementsByName("hiddenField")[0].value
-    myData = myData.filter(item=> item.id !== +itemID)
-    localStorage.setItem("myList", JSON.stringify(myData))
-    let deletedCard = document.querySelector(".deletedCard")
-    deletedCard.remove()
-    closeBtn()
-
-}
-        
-function closeBtn(){
-    let delPopup = document.querySelector(".popup-overlay")
-    delPopup.style.visibility = "hidden"
-}
 
 function filterLists(e, flag){
     let liList = [...e.target.parentElement.children]
@@ -150,5 +127,78 @@ function editBtn(e){
     let myID = parentElement.children[1].children[2].value
     let myItem = myData.filter(ele=>ele.id === +myID)
     createTemplate(myItem[0], parentElement)
-  
+    
 }
+
+function openDialog(){
+    let popupOverlay = document.querySelector(".popup-overlay")
+    popupOverlay.style.visibility = "visible"
+}
+
+function closeDialog(){
+    let popupOverlay = document.querySelector(".popup-overlay")
+    popupOverlay.style.visibility = "hidden"
+    popupOverlay.innerHTML = ``
+}
+
+function renderDeleteDialog(e){
+    openDialog()
+    let dialogID = e.target.dataset.dialogId
+    let parentEle = e.target.closest(".item")
+    let itemID = parentEle.getElementsByClassName("hidden")[0].value
+    let popupOverlay = document.querySelector(".popup-overlay")
+    let temp = document.getElementById(dialogID)
+    let clone = temp.content.cloneNode(true)
+    popupOverlay.appendChild(clone)
+    let templateHiddenField = document.querySelector(".popup-box [type='hidden']")
+    templateHiddenField.value = +itemID
+}
+
+function confirmDeletion(e){
+    let itemID = document.getElementsByName("hiddenField")[0].value
+    let deletedItemID = [...document.getElementsByClassName("hidden")]
+    deletedItemID = deletedItemID.filter(item=> item.value == +itemID)
+    let parentElement = deletedItemID[0].parentElement.parentElement
+    myData = myData.filter(item=> item.id != +itemID)
+    localStorage.setItem("myList", JSON.stringify(myData))
+    parentElement.remove()
+    closeDialog()
+
+}
+
+function renderImageSlideDialog(e){
+    openDialog()
+    let dialogID = e.target.dataset.dialogId
+    let parentEle = e.target.closest(".item")
+    let popupOverlay = document.querySelector(".popup-overlay")
+    let temp = document.getElementById(dialogID)
+    let clone = temp.content.cloneNode(true)
+    popupOverlay.appendChild(clone)
+    
+    let itemID = parentEle.getElementsByClassName("hidden")[0].value
+    let popupImage = popupOverlay.querySelector(".shownImage")
+    popupImage.src = parentEle.querySelector(".image").src
+
+    let myImages = [...document.getElementsByClassName("image")]
+    myImages = myImages.map(item => item.src)
+    
+    let currentIndex = -1
+    myImages.forEach((item, index)=>{
+        console.log(item , popupImage.src, index)
+        if(item == popupImage.src){
+            currentIndex = index
+        }
+    })
+    console.log(currentIndex)
+
+    document.querySelector(".arrowPrevious").addEventListener("click",()=>{
+        popupImage.src = myImages[--currentIndex]
+        if(currentIndex === 0) currentIndex = myImages.length
+    })
+
+    document.querySelector(".arrowNext").addEventListener("click",()=>{
+        popupImage.src = myImages[++currentIndex]
+        if(currentIndex === myImages.length-1) currentIndex = -1
+    })
+}
+

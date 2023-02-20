@@ -210,3 +210,16 @@ section .item img{
 .popup-box button.yes{
     background-color: #bb2d3b;
 }
+
+.imageSlider{
+    align-items: center;
+}
+.imageSlider .arrowPrevious{
+    transform: rotate(180deg);
+}
+/* .imageslider #close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #bb2d3b;
+} */
